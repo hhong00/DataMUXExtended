@@ -182,7 +182,7 @@ if [ "$SETTING" == "retrieval_pretraining" ]; then
     
     # params diff
     DATASET_NAME="wikitext"
-    DATASET_CONFIG_NAME="wikitext-103-raw-v1"
+    DATASET_CONFIG_NAME="wikitext-2-raw-v1"
     CMD_DIFF="--dataset_name ${DATASET_NAME}\
     --dataset_config_name ${DATASET_CONFIG_NAME} \
     --evaluation_strategy steps \
