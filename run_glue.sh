@@ -182,12 +182,12 @@ if [ "$SETTING" == "retrieval_pretraining" ]; then
     
     # params diff
     DATASET_NAME="wikitext"
-    DATASET_CONFIG_NAME="wikitext-2-raw-v1"
+    DATASET_CONFIG_NAME="wikitext-103-raw-v1"
     CMD_DIFF="--dataset_name ${DATASET_NAME}\
     --dataset_config_name ${DATASET_CONFIG_NAME} \
     --evaluation_strategy steps \
     --eval_steps 10000 \
-    --max_steps 500000 \
+    --max_steps 50000 \
     --save_steps 10000"
     
     elif [ "$SETTING" = "finetuning" ]; then
@@ -208,7 +208,7 @@ if [ "$SETTING" == "retrieval_pretraining" ]; then
     CMD_DIFF="--task_name ${TASK_NAME}\
     --evaluation_strategy steps \
     --eval_steps 10000 \
-    --max_steps 500000 \
+    --max_steps 50000 \
     --save_steps 10000 "
 
 elif [ "$SETTING" = "baseline" ]; then
