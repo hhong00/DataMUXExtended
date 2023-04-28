@@ -219,7 +219,8 @@ class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
         logits, _ = self.lstm(embedding_output)
         outputs = self.output(logits)
-
+        
+        breakpoint()
         sequence_output = outputs[0]
         # fancy indexing to get the instance position embedding
 
@@ -478,9 +479,8 @@ class LSTMTokenClassificationMuxed(torch.nn.Module):
             #inputs_embeds=embedding_output,
             #return_dict=return_dict,
         #)
-        outputs = self.lstm(embedding_output)
+        outputs, _ = self.lstm(embedding_output)
         outputs = self.output(outputs)
-        breakpoint()
         sequence_output = outputs[0]
         
         # fancy indexing to get the instance position embedding
