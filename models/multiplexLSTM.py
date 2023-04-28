@@ -482,6 +482,7 @@ class LSTMTokenClassificationMuxed(torch.nn.Module):
         outputs = self.output(outputs)
         
         sequence_output = outputs[0]
+        breakpoint()
         # fancy indexing to get the instance position embedding
 
         logits, demuxed_representations = self.demultiplexer(sequence_output)
