@@ -207,6 +207,7 @@ class RobertaSequenceClassificationMuxed(RobertaPreTrainedModel):
             return_dict=return_dict,
         )
         sequence_output = outputs[0]
+        breakpoint()
         # fancy indexing to get the instance position embedding
 
         logits, demuxed_representations = self.demultiplexer(sequence_output)
