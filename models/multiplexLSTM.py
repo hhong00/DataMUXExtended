@@ -217,9 +217,8 @@ class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
             #return_dict=return_dict,
         #)
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
-        outputs = self.lstm(embedding_output)
-        breakpoint()
-        outputs = self.output(outputs)
+        logits, _ = self.lstm(embedding_output)
+        outputs = self.output(logits)
 
         sequence_output = outputs[0]
         # fancy indexing to get the instance position embedding
