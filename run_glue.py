@@ -264,6 +264,7 @@ def main():
     # See all possible arguments in src/transformers/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
+    breakpoint()
     parser = HfArgumentParser(
         (ModelArguments, DataTrainingArguments, TrainingArguments)
     )
@@ -443,7 +444,7 @@ def main():
 
     #whether or not to use lstm here.
     lstm = True
-    
+
     model_path_supplied = model_args.model_name_or_path is not None
     if model_args.should_mux:
         if lstm:
