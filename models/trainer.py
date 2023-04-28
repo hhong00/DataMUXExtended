@@ -1243,7 +1243,7 @@ class MuxTrainer(Trainer):
             with torch.no_grad():
                 for _, inputs in enumerate(tqdm(train_dataloader)):
                     inputs = self._prepare_inputs(inputs)
-                    breakpoint()
+                    print("A")
                     inputs.pop('labels')
                     start_time = time.time()
                     _ = model(**inputs)
