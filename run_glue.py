@@ -443,7 +443,7 @@ def main():
     config.learn_muxing = model_args.learn_muxing
 
     #whether or not to use lstm here.
-    lstm = True
+    lstm = False
 
     model_path_supplied = model_args.model_name_or_path is not None
     if model_args.should_mux:
@@ -560,7 +560,7 @@ def main():
         myTrain = Dataset.from_dict(datasets["train"][1:100])
         myVal = Dataset.from_dict(datasets["validation"][1:100])
         myDatasets = DatasetDict({"test":myTest, "train":myTrain, "validation": myVal})
-        
+
         tokenized_datasets = myDatasets.map(
             tokenize_function,
             batched=True,
