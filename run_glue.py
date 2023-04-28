@@ -441,19 +441,33 @@ def main():
     config.task_loss_coeff = model_args.task_loss_coeff
     config.learn_muxing = model_args.learn_muxing
 
+    #whether or not to use lstm here.
+    lstm = True
+    
     model_path_supplied = model_args.model_name_or_path is not None
     if model_args.should_mux:
-        
-        if model_path_supplied:
-            model = RobertaSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
+        if lstm:
+            if model_path_supplied:
+                model = LSTMSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
+            else:
+                model = LSTMSequenceClassificationMuxed(config=config)
         else:
-            model = RobertaSequenceClassificationMuxed(config=config)
+            if model_path_supplied:
+                model = RobertaSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
+            else:
+                model = RobertaSequenceClassificationMuxed(config=config)
     else:
         # non-multiplexed baseline
-        if model_path_supplied:
-            model = AutoModelForSequenceClassification.from_pretrained(model_args.model_name_or_path, config=config)
+        if lstm:
+            if model_path_supplied:
+                model = LSTMSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
+            else:
+                model = LSTMSequenceClassificationMuxed(config=config)
         else:
-            model = AutoModelForSequenceClassification.from_config(config=config)
+            if model_path_supplied:
+                model = AutoModelForSequenceClassification.from_pretrained(model_args.model_name_or_path, config=config)
+            else:
+                model = AutoModelForSequenceClassification.from_config(config=config)
 
     if data_args.task_name is not None:
         sentence1_key, sentence2_key = task_to_keys[data_args.task_name]
