@@ -554,9 +554,9 @@ def main():
         def tokenize_function(examples):
             examples["text"] = [line for line in examples["text"] if line is not None and len(line) > 0 and not line.isspace()]
             return tokenizer(examples[text_column_name], return_special_tokens_mask=True)
-
-        print(type(datasets))
-        tokenized_datasets = datasets["train"][1:50].map(
+        
+        print(datasets)
+        tokenized_datasets = datasets.map(
             tokenize_function,
             batched=True,
             # num_proc=data_args.preprocessing_num_workers,
