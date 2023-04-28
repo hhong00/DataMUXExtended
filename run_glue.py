@@ -43,6 +43,7 @@ from models.multiplexing import RobertaSequenceClassificationMuxed
 from models.utils import get_last_checkpoint_trainerstate_robust
 from models.trainer import MuxTrainer
 import re
+from models.multiplexLSTM import LSTMSequenceClassificationMuxed
 
 task_to_keys = {
     "cola": ("sentence", None),
