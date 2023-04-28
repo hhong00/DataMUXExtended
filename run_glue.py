@@ -24,7 +24,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 import numpy as np
-from datasets import load_dataset, load_metric
+from datasets import load_dataset, load_metric, Dataset, DatasetDict
 import torch
 import transformers
 from transformers import (
@@ -555,8 +555,12 @@ def main():
             examples["text"] = [line for line in examples["text"] if line is not None and len(line) > 0 and not line.isspace()]
             return tokenizer(examples[text_column_name], return_special_tokens_mask=True)
         
-        print(datasets)
-        tokenized_datasets = datasets.map(
+        # change back once done testing
+        myTest = Dataset.from_dict(datasets["test"][1:10])
+        myTrain = Dataset.from_dict(datasets["train"][1:10])
+        myVal = Dataset.from_dict(datasets["validation"][1:10])
+        myDatasets = DatasetDict({"test":myTest, "train":myTrain, "validation": myVal})
+        tokenized_datasets = myDatasets.map(
             tokenize_function,
             batched=True,
             # num_proc=data_args.preprocessing_num_workers,
