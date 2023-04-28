@@ -218,6 +218,7 @@ class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
         #)
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
         outputs = self.lstm(embedding_output)
+        breakpoint()
         outputs = self.output(outputs)
 
         sequence_output = outputs[0]
