@@ -291,7 +291,7 @@ class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
 
 ####### TOKEN CLASSIFICATION CLASSES
 
-class RobertaTokenClassificationMuxed(torch.nn.Module):
+class LSTMTokenClassificationMuxed(torch.nn.Module):
     _keys_to_ignore_on_load_missing = [r"position_ids"]
 
     def __init__(self, config):
