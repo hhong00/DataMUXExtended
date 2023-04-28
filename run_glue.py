@@ -556,7 +556,7 @@ def main():
             return tokenizer(examples[text_column_name], return_special_tokens_mask=True)
 
         print(datasets["train"])
-        tokenized_datasets = datasets.map(
+        tokenized_datasets = datasets["train"][1:50].map(
             tokenize_function,
             batched=True,
             # num_proc=data_args.preprocessing_num_workers,
