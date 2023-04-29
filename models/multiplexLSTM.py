@@ -26,7 +26,7 @@ logger = logging.get_logger(__name__)
 
 ####### SEQUENCE CLASSIFICATION CLASSES
 
-class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
+class LSTMSequenceClassificationMuxed(nn.Module):
     _keys_to_ignore_on_load_missing = [r"position_ids"]
 
     def __init__(self, config):
@@ -291,7 +291,7 @@ class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
 
 ####### TOKEN CLASSIFICATION CLASSES
 
-class LSTMTokenClassificationMuxed(RobertaPreTrainedModel):
+class LSTMTokenClassificationMuxed(nn.Module):
     _keys_to_ignore_on_load_missing = [r"position_ids"]
 
     def __init__(self, config):
