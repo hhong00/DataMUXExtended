@@ -55,7 +55,7 @@ class LSTMSequenceClassificationMuxed(nn.Module):
         else:
             raise NotImplementedError("demuxing_varaint argument (%s) not recognized." % config.demuxing_variant)
 
-        self.init_weights()
+        #self.init_weights()
 
         d_model = config.hidden_size
         instance_embedding = None
@@ -318,7 +318,7 @@ class LSTMTokenClassificationMuxed(nn.Module):
         else:
             raise NotImplementedError("demuxing_variant (%s) not recognized." % config.demuxing_variant)
 
-        self.init_weights()
+        #self.init_weights()
 
         d_model = config.hidden_size
         instance_embedding = None
