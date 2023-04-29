@@ -519,7 +519,7 @@ class MuxTrainer(Trainer):
 
         Args:
             resume_from_checkpoint (:obj:`str` or :obj:`bool`, `optional`):
-                If a :obj:`str`, local path to a saved checkpoint as saved by a previous instance of
+                If a :obj:`str`, local path to a checkpoint as saved by a previous instance of
                 :class:`~transformers.Trainer`. If a :obj:`bool` and equals `True`, load the last checkpoint in
                 `args.output_dir` as saved by a previous instance of :class:`~transformers.Trainer`. If present,
                 training will resume from the model/optimizer/scheduler states loaded here.
