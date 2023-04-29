@@ -43,7 +43,7 @@ class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
         #self.roberta = RobertaModel(config, add_pooling_layer=False)
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
         self.embedding = nn.Embedding(50265, 768)
-        self.lstm = nn.LSTM(input_size = 768, hidden_size = 768/2, num_layers = 12, bidirectional = True, dropout = 0.1)
+        self.lstm = nn.LSTM(input_size = 768, hidden_size = 384, num_layers = 12, bidirectional = True, dropout = 0.1)
         self.output = nn.Linear(768, 50265)
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
 
