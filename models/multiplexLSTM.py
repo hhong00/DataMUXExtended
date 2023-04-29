@@ -44,7 +44,6 @@ class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
         self.embedding = nn.Embedding(50265, 768)
         self.lstm = nn.LSTM(input_size = 768, hidden_size = 384, num_layers = 12, bidirectional = True, dropout = 0.1)
-        self.output = nn.Linear(768, 50265)
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
 
         if config.demuxing_variant == "index":
@@ -218,9 +217,8 @@ class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
         #)
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
         outputs, _ = self.lstm(embedding_output)
-        outputs = self.output(outputs)
+        #outputs = self.output(outputs)
         
-        breakpoint()
         #sequence_output = outputs[0]
         sequence_output = outputs
         # fancy indexing to get the instance position embedding
@@ -293,7 +291,7 @@ class LSTMSequenceClassificationMuxed(RobertaPreTrainedModel):
 
 ####### TOKEN CLASSIFICATION CLASSES
 
-class LSTMTokenClassificationMuxed(torch.nn.Module):
+class LSTMTokenClassificationMuxed(RobertaPreTrainedModel):
     _keys_to_ignore_on_load_missing = [r"position_ids"]
 
     def __init__(self, config):
@@ -309,8 +307,7 @@ class LSTMTokenClassificationMuxed(torch.nn.Module):
 
         #self.roberta = RobertaModel(config, add_pooling_layer=False)
         self.embedding = nn.Embedding(50265, 768)
-        self.lstm = nn.LSTM(input_size = 768, hidden_size = 768, num_layers = 12, bidirectional = True, dropout = 0.1)
-        self.output = nn.Linear(2* 768, 50265)
+        self.lstm = nn.LSTM(input_size = 768, hidden_size = 384, num_layers = 12, bidirectional = True, dropout = 0.1)
 
         if config.demuxing_variant == "index":
             self.demultiplexer = RobertaIndexDemultiplexerTokenClassification(config)
@@ -481,8 +478,9 @@ class LSTMTokenClassificationMuxed(torch.nn.Module):
             #return_dict=return_dict,
         #)
         outputs, _ = self.lstm(embedding_output)
-        outputs = self.output(outputs)
-        sequence_output = outputs[0]
+        #outputs = self.output(outputs)
+        #sequence_output = outputs[0]
+        sequence_output = outputs
         
         # fancy indexing to get the instance position embedding
 
