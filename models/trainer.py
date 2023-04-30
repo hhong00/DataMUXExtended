@@ -567,22 +567,22 @@ class MuxTrainer(Trainer):
                 )
         
         # Heavy modification here to trainer, hardcoded lstm bool value to tell if currently doing lstm implementation or not
-        lstm = True
+        #lstm = True
         if resume_from_checkpoint is not None and os.path.isfile(
             os.path.join(resume_from_checkpoint, WEIGHTS_NAME)
         ):
             logger.info(f"Loading model from {resume_from_checkpoint}).")
-            if lstm:
-                self.model.load_state_dict(torch.load("datamux/lstm/pretraining/model.pt"))
+            #if lstm:
+                #self.model.load_state_dict(torch.load("datamux/lstm/pretraining/model.pt"))
+            #else:
+            if isinstance(self.model, PreTrainedModel):
+                self.model = self.model.from_pretrained(resume_from_checkpoint)
+                model_reloaded = True
             else:
-                if isinstance(self.model, PreTrainedModel):
-                    self.model = self.model.from_pretrained(resume_from_checkpoint)
-                    model_reloaded = True
-                else:
-                    state_dict = torch.load(
-                        os.path.join(resume_from_checkpoint, WEIGHTS_NAME)
-                    )
-                    self.model.load_state_dict(state_dict)
+                state_dict = torch.load(
+                    os.path.join(resume_from_checkpoint, WEIGHTS_NAME)
+                )
+                self.model.load_state_dict(state_dict)
 
         # If model was re-initialized, put it on the right device and update self.model_wrapped
         if model_reloaded:
@@ -979,11 +979,11 @@ class MuxTrainer(Trainer):
 
         self._memory_tracker.stop_and_update_metrics(metrics)
 
-        lstm_pretraining = True
-        if lstm_pretraining:
-            path = "datamux/lstm/pretraining"
-            os.makedirs(path, exist_ok = True) 
-            torch.save(self.model.state_dict(), os.path.join(path, "model.pt"))
+        #lstm_pretraining = True
+        #if lstm_pretraining:
+        #    path = "datamux/lstm/pretraining"
+        #    os.makedirs(path, exist_ok = True) 
+        #    torch.save(self.model.state_dict(), os.path.join(path, "model.pt"))
         return TrainOutput(
             self.state.global_step,
             self._total_loss_scalar / self.state.global_step,
