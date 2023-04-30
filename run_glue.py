@@ -447,10 +447,10 @@ def main():
     model_path_supplied = model_args.model_name_or_path is not None
     if model_args.should_mux:
         if lstm:
-            if model_path_supplied:
-                model = LSTMSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
-            else:
-                model = LSTMSequenceClassificationMuxed(config=config)
+            #if model_path_supplied:
+                #model = LSTMSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
+            #else:
+            model = LSTMSequenceClassificationMuxed(config=config)
         else:
             if model_path_supplied:
                 model = RobertaSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
