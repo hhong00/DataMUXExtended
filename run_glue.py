@@ -44,6 +44,7 @@ from models.utils import get_last_checkpoint_trainerstate_robust
 from models.trainer import MuxTrainer
 import re
 from models.multiplexLSTM import LSTMSequenceClassificationMuxed
+from models.lstm import LSTMSequenceClassificationUnMuxed
 
 task_to_keys = {
     "cola": ("sentence", None),
@@ -462,7 +463,7 @@ def main():
             #if model_path_supplied:
             #    model = LSTMSequenceClassificationMuxed.from_pretrained#(model_args.model_name_or_path, config=config)
             #else:
-            model = LSTMSequenceClassificationMuxed(config=config)
+            model = LSTMSequenceClassificationUnMuxed(config=config)
         else:
             if model_path_supplied:
                 model = AutoModelForSequenceClassification.from_pretrained(model_args.model_name_or_path, config=config)
