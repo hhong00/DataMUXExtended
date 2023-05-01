@@ -40,6 +40,11 @@ class LSTMSequenceClassificationMuxed(nn.Module):
         self.retrieval_loss_coeff = config.retrieval_loss_coeff
         self.task_loss_coeff = config.task_loss_coeff
 
+        baseline = True
+        if baseline:
+            self.retrieval_loss_coeff = 0
+            self.task_loss_coeff = 1
+
         #self.roberta = RobertaModel(config, add_pooling_layer=False)
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#
         self.embedding = nn.Embedding(50265, 768)
