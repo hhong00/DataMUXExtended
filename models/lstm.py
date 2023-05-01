@@ -87,11 +87,12 @@ class LSTMSequenceClassificationUnMuxed(nn.Module):
                 self.num_instances, d_model, norm=self.gaussian_hadamard_norm
             )
         '''
+        '''
         if not config.learn_muxing:
             self.instance_embedding.requires_grad = False
         else:
             self.instance_embedding.requires_grad = True
-            
+        '''
 
     def forward(
         self,
