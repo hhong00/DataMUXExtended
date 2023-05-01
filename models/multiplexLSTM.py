@@ -40,7 +40,7 @@ class LSTMSequenceClassificationMuxed(nn.Module):
         self.retrieval_loss_coeff = config.retrieval_loss_coeff
         self.task_loss_coeff = config.task_loss_coeff
 
-        baseline = True
+        baseline = False
         if baseline:
             self.retrieval_loss_coeff = 0
             self.task_loss_coeff = 1
