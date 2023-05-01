@@ -828,6 +828,8 @@ class MuxTrainer(Trainer):
                     if cur_retrieval_loss is not None:
                         tr_retrieval_loss += cur_retrieval_loss
 
+                breakpoint()
+                
                 self._total_flos += float(self.floating_point_ops(inputs))
 
                 # Optimizer step for deepspeed must be called on every step regardless of the value of gradient_accumulation_steps
