@@ -186,9 +186,9 @@ if [ "$SETTING" == "retrieval_pretraining" ]; then
     CMD_DIFF="--dataset_name ${DATASET_NAME}\
     --dataset_config_name ${DATASET_CONFIG_NAME} \
     --evaluation_strategy steps \
-    --eval_steps 50 \
-    --max_steps 500 \
-    --save_steps 50"
+    --eval_steps 10000 \
+    --max_steps 50000 \
+    --save_steps 10000"
     
     elif [ "$SETTING" = "finetuning" ]; then
     
