@@ -556,12 +556,13 @@ def main():
             return tokenizer(examples[text_column_name], return_special_tokens_mask=True)
         
         # change back once done testing
-        #myTest = Dataset.from_dict(datasets["test"][1:100000])
-        #myTrain = Dataset.from_dict(datasets["train"][1:100000])
-        #myVal = Dataset.from_dict(datasets["validation"][1:100000])
-        #myDatasets = DatasetDict({"test":myTest, "train":myTrain, "validation": myVal})
+        myTest = Dataset.from_dict(datasets["test"][1:100000])
+        myTrain = Dataset.from_dict(datasets["train"][1:100000])
+        myVal = Dataset.from_dict(datasets["validation"][1:100000])
+        myDatasets = DatasetDict({"test":myTest, "train":myTrain, "validation": myVal})
+        #myDatasets = datasets
 
-        tokenized_datasets = datasets.map(
+        tokenized_datasets = myDatasets.map(
             tokenize_function,
             batched=True,
             # num_proc=data_args.preprocessing_num_workers,
