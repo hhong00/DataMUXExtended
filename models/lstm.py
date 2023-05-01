@@ -233,6 +233,7 @@ class LSTMSequenceClassificationUnMuxed(nn.Module):
         # fancy indexing to get the instance position embedding
         logits = sequence_output
         #logits, demuxed_representations = self.demultiplexer(sequence_output)
+        '''
         if labels is not None:
 
             labels = labels[: (modified_batch_size * num_instances)]
@@ -271,19 +272,19 @@ class LSTMSequenceClassificationUnMuxed(nn.Module):
             retrieval_labels[pad_mask_wipe] = -100
 
             retrieval_predictions = self.retrieval_head(sequence_output, instance_labels)
-
-        retrieval_loss = None
+            '''
+        #retrieval_loss = None
         task_loss = None
         loss = None
         if labels is not None:
             loss_fct = CrossEntropyLoss()
             task_loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1))
-            retrieval_loss = loss_fct(
-                retrieval_predictions.view(-1, self.config.vocab_size),
-                retrieval_labels.view(-1),
-            )
+            #retrieval_loss = loss_fct(
+                #retrieval_predictions.view(-1, self.config.vocab_size),
+                #retrieval_labels.view(-1),
+            #)
             loss = (self.task_loss_coeff * task_loss) + (
-                self.retrieval_loss_coeff * retrieval_loss
+                self.retrieval_loss_coeff #* retrieval_loss
             )
 
         if not return_dict:
@@ -295,7 +296,7 @@ class LSTMSequenceClassificationUnMuxed(nn.Module):
             logits=logits,
             #hidden_states=demuxed_representations,
             task_loss=task_loss,
-            retrieval_loss=retrieval_loss,
+            #retrieval_loss=retrieval_loss,
         )
 
 ####### TOKEN CLASSIFICATION CLASSES
