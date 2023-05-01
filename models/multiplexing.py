@@ -459,7 +459,7 @@ class RobertaTokenClassificationMuxed(RobertaPreTrainedModel):
             inputs_embeds=embedding_output,
             return_dict=return_dict,
         )
-        breakpoint()
+        #breakpoint()
         sequence_output = outputs[0]
         # fancy indexing to get the instance position embedding
 
