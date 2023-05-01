@@ -459,10 +459,10 @@ def main():
     else:
         # non-multiplexed baseline
         if lstm:
-            if model_path_supplied:
-                model = LSTMSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
-            else:
-                model = LSTMSequenceClassificationMuxed(config=config)
+            #if model_path_supplied:
+            #    model = LSTMSequenceClassificationMuxed.from_pretrained#(model_args.model_name_or_path, config=config)
+            #else:
+            model = LSTMSequenceClassificationMuxed(config=config)
         else:
             if model_path_supplied:
                 model = AutoModelForSequenceClassification.from_pretrained(model_args.model_name_or_path, config=config)
