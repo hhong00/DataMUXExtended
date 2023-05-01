@@ -44,6 +44,7 @@ from models.utils import get_last_checkpoint_trainerstate_robust
 from models.trainer import MuxTrainer
 import re
 from models.multiplexLSTM import LSTMSequenceClassificationMuxed
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 task_to_keys = {
     "cola": ("sentence", None),
