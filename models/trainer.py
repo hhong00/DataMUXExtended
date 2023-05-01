@@ -828,7 +828,7 @@ class MuxTrainer(Trainer):
                     if cur_retrieval_loss is not None:
                         tr_retrieval_loss += cur_retrieval_loss
 
-                if step % 100 == 0:
+                if epoch % 100 == 0:
                     breakpoint()
 
                 self._total_flos += float(self.floating_point_ops(inputs))
