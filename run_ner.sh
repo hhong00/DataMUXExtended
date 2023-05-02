@@ -158,9 +158,9 @@ done
 
 
 
-#declare -A task2datasetmap
-#task2datasetmap[ner]="conll2003"
-#DATASET=${task2datasetmap[$TASK_NAME]}
+declare -A task2datasetmap
+task2datasetmap[ner]="conll2003"
+DATASET=${task2datasetmap[$TASK_NAME]}
 # other miscelleneous params
 SAVE_STEPS=10000
 MAX_SEQ_LENGTH=128
