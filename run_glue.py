@@ -454,7 +454,6 @@ def main():
             #else:
             model = LSTMSequenceClassificationMuxed(config=config)
         else:
-            breakpoint()
             if model_path_supplied:
                 model = AlbertSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
             else:
