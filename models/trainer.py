@@ -125,7 +125,6 @@ _is_native_amp_available = False
 DEFAULT_CALLBACKS = [DefaultFlowCallback]
 DEFAULT_PROGRESS_CALLBACK = ProgressCallback
 
-STEPCOUNTER = 0
 taskLosses = []
 retrievalLosses = []
 avgTaskLosses = []
@@ -533,7 +532,7 @@ class MuxTrainer(Trainer):
             kwargs:
                 Additional keyword arguments used to hide deprecated arguments
         """
-
+        stepcounter = 0
         # memory metrics - must set up as early as possible
         self._memory_tracker.start()
 
@@ -834,10 +833,10 @@ class MuxTrainer(Trainer):
                         tr_retrieval_loss += cur_retrieval_loss
                 
                 
-                STEPCOUNTER += 1
+                stepcounter += 1
                 taskLosses.append(cur_task_loss.item())
                 retrievalLosses.append(cur_retrieval_loss.item())
-                if STEPCOUNTER % 100 == 0:
+                if stepcounter % 100 == 0:
                     avgTaskLosses.append(sum(taskLosses)/100)
                     avgRetrievalLosses.append(sum(retrievalLosses)/100)
                     taskLosses=[]
