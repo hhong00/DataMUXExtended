@@ -831,8 +831,8 @@ class MuxTrainer(Trainer):
                         tr_retrieval_loss += cur_retrieval_loss
                 
                 breakpoint()
-                taskLosses.append(cur_task_loss)
-                retrievalLosses.append(cur_retrieval_loss)
+                taskLosses.append(cur_task_loss.item())
+                retrievalLosses.append(cur_retrieval_loss.item())
 
                 #if epoch % 100 == 0:
                 #    breakpoint()
