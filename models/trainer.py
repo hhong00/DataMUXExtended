@@ -567,7 +567,7 @@ class MuxTrainer(Trainer):
                 )
         
         # Heavy modification here to trainer, hardcoded lstm bool value to tell if currently doing lstm implementation or not
-        lstm = True
+        lstm = False
         if resume_from_checkpoint is not None and os.path.isfile(
             os.path.join(resume_from_checkpoint, WEIGHTS_NAME)
         ):

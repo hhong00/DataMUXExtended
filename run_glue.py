@@ -44,6 +44,7 @@ from models.utils import get_last_checkpoint_trainerstate_robust
 from models.trainer import MuxTrainer
 import re
 from models.multiplexLSTM import LSTMSequenceClassificationMuxed
+from models.multiplexingAlbert import AlbertSequenceClassificationMuxed
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 task_to_keys = {
@@ -443,7 +444,7 @@ def main():
     config.learn_muxing = model_args.learn_muxing
 
     #whether or not to use lstm here.
-    lstm = True
+    lstm = False
 
     model_path_supplied = model_args.model_name_or_path is not None
     if model_args.should_mux:
@@ -454,9 +455,9 @@ def main():
             model = LSTMSequenceClassificationMuxed(config=config)
         else:
             if model_path_supplied:
-                model = RobertaSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
+                model = AlbertSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
             else:
-                model = RobertaSequenceClassificationMuxed(config=config)
+                model = AlbertSequenceClassificationMuxed(config=config)
     else:
         # non-multiplexed baseline
         if lstm:
