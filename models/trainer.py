@@ -125,10 +125,7 @@ _is_native_amp_available = False
 DEFAULT_CALLBACKS = [DefaultFlowCallback]
 DEFAULT_PROGRESS_CALLBACK = ProgressCallback
 
-taskLosses = []
-retrievalLosses = []
-avgTaskLosses = []
-avgRetrievalLosses = []
+
 
 if is_in_notebook():
     from transformers.utils.notebook import NotebookProgressCallback
@@ -533,6 +530,10 @@ class MuxTrainer(Trainer):
                 Additional keyword arguments used to hide deprecated arguments
         """
         stepcounter = 0
+        taskLosses = []
+        retrievalLosses = []
+        avgTaskLosses = []
+        avgRetrievalLosses = []
         # memory metrics - must set up as early as possible
         self._memory_tracker.start()
 
