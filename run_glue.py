@@ -562,7 +562,7 @@ def main():
         myVal = Dataset.from_dict(datasets["validation"][1:1000])
         myDatasets = DatasetDict({"test":myTest, "train":myTrain, "validation": myVal})
         #for normal run thru whole dataset
-        myDatasets = datasets
+        #myDatasets = datasets
 
         tokenized_datasets = myDatasets.map(
             tokenize_function,
