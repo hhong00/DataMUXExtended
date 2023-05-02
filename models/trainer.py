@@ -176,8 +176,11 @@ if TYPE_CHECKING:
 
 logger = logging.get_logger(__name__)
 
+counter = 0
 taskLosses = []
 retrievalLosses = []
+avgTaskLosses = []
+avgRetrievalLosses = []
 
 class WandbCallbackThreadFix(WandbCallback):
     def setup(self, args, state, model, reinit, **kwargs):
@@ -830,9 +833,16 @@ class MuxTrainer(Trainer):
                     if cur_retrieval_loss is not None:
                         tr_retrieval_loss += cur_retrieval_loss
                 
-                breakpoint()
+                
+                counter += 1
                 taskLosses.append(cur_task_loss.item())
                 retrievalLosses.append(cur_retrieval_loss.item())
+                if counter % 100 == 0:
+                    avgTaskLosses.append(sum(taskLosses)/100)
+                    avgRetrievalLosses.append(sum(retrievalLosses)/100)
+                    taskLosses=[]
+                    retrievalLosses=[]
+                    
 
                 #if epoch % 100 == 0:
                 #    breakpoint()
@@ -994,6 +1004,12 @@ class MuxTrainer(Trainer):
             path = "datamux/lstm/pretraining"
             os.makedirs(path, exist_ok = True) 
             torch.save(self.model.state_dict(), os.path.join(path, "model.pt"))
+            
+        file = open("losses.txt", "w+")
+        content = str([avgTaskLosses, avgRetrievalLosses])
+        file.write(content)
+        file.close()
+
         return TrainOutput(
             self.state.global_step,
             self._total_loss_scalar / self.state.global_step,
