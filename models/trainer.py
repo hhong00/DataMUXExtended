@@ -176,6 +176,8 @@ if TYPE_CHECKING:
 
 logger = logging.get_logger(__name__)
 
+taskLosses = []
+retrievalLosses = []
 
 class WandbCallbackThreadFix(WandbCallback):
     def setup(self, args, state, model, reinit, **kwargs):
@@ -827,6 +829,10 @@ class MuxTrainer(Trainer):
                         tr_task_loss += cur_task_loss
                     if cur_retrieval_loss is not None:
                         tr_retrieval_loss += cur_retrieval_loss
+                
+                breakpoint()
+                taskLosses.append(cur_task_loss)
+                retrievalLosses.append(cur_retrieval_loss)
 
                 #if epoch % 100 == 0:
                 #    breakpoint()
