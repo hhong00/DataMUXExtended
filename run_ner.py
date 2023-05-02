@@ -40,6 +40,7 @@ from transformers import (
 )
 from transformers.trainer_utils import get_last_checkpoint
 from models.multiplexing import RobertaTokenClassificationMuxed
+from models.multiplexLSTM import LSTMTokenClassificationMuxed
 from models.trainer import MuxTrainer
 import torch
 
@@ -417,20 +418,25 @@ def main():
             use_auth_token=True if model_args.use_auth_token else None,
         )
 
-
+    lstm = True
     model_path_supplied = model_args.model_name_or_path is not None
     if model_args.should_mux:
-        
-        if model_path_supplied:
-            model = RobertaTokenClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
+        if lstm:
+            model = LSTMTokenClassificationMuxed(config=config)
         else:
-            model = RobertaTokenClassificationMuxed(config=config)
+            if model_path_supplied:
+                model = RobertaTokenClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
+            else:
+                model = RobertaTokenClassificationMuxed(config=config)
     else:
-        # non-multiplexed baseline
-        if model_path_supplied:
-            model = AutoModelForTokenClassification.from_pretrained(model_args.model_name_or_path, config=config)
+        if lstm:
+            model = LSTMTokenClassificationMuxed(config = config)
         else:
-            model = AutoModelForTokenClassification(config=config)
+            # non-multiplexed baseline
+            if model_path_supplied:
+                model = AutoModelForTokenClassification.from_pretrained(model_args.model_name_or_path, config=config)
+            else:
+                model = AutoModelForTokenClassification(config=config)
 
     # Tokenizer check: this script requires a fast tokenizer.
     if not isinstance(tokenizer, PreTrainedTokenizerFast):
