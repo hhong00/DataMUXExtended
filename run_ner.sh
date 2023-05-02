@@ -15,6 +15,7 @@ LEARN_MUXING=0
 CONTINUE_TRAIN=0
 DO_TRAIN=0
 DO_EVAL=0
+task2datasetmap[ner]="conll2003"
 # commmand line arguments
 #!/bin/bash
 
@@ -157,8 +158,8 @@ done
 
 
 
-declare -A task2datasetmap
-task2datasetmap[ner]="conll2003"
+#declare -A task2datasetmap
+#task2datasetmap[ner]="conll2003"
 DATASET=${task2datasetmap[$TASK_NAME]}
 # other miscelleneous params
 SAVE_STEPS=10000
