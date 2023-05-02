@@ -574,7 +574,7 @@ class MuxTrainer(Trainer):
             logger.info(f"Loading model from {resume_from_checkpoint}).")
             if lstm:
                 
-                self.model.load_state_dict(torch.load("datamux/lstm/pretraining/model.pt"))
+                self.model.load_state_dict(torch.load("datamux/lstm/pretraining/file.zip"))
             else:
                 if isinstance(self.model, PreTrainedModel):
                     self.model = self.model.from_pretrained(resume_from_checkpoint)
