@@ -15,7 +15,7 @@ LEARN_MUXING=0
 CONTINUE_TRAIN=0
 DO_TRAIN=0
 DO_EVAL=0
-task2datasetmap[ner]="conll2003"
+task2datasetmap["ner"]="conll2003"
 # commmand line arguments
 #!/bin/bash
 
