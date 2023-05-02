@@ -451,7 +451,6 @@ def main():
             #if model_path_supplied:
                 #model = LSTMSequenceClassificationMuxed.from_pretrained(model_args.model_name_or_path, config=config)
             #else:
-            breakpoint()
             model = LSTMSequenceClassificationMuxed(config=config)
         else:
             if model_path_supplied:
