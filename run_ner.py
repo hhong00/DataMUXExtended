@@ -437,7 +437,7 @@ def main():
             if model_path_supplied:
                 model = AutoModelForTokenClassification.from_pretrained(model_args.model_name_or_path, config=config)
             else:
-                breakpoint()
+                config = AutoConfig.from_pretrained("albert-base-v2")
                 model = AutoModelForTokenClassification(config=config)
 
     # Tokenizer check: this script requires a fast tokenizer.
