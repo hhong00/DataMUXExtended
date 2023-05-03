@@ -438,7 +438,7 @@ def main():
                 model = AutoModelForTokenClassification.from_pretrained(model_args.model_name_or_path, config=config)
             else:
                 config = AutoConfig.from_pretrained("albert-base-v2")
-                model = AutoModelForTokenClassification(config=config)
+                model = AutoModelForTokenClassification.from_config(config=config)
 
     # Tokenizer check: this script requires a fast tokenizer.
     if not isinstance(tokenizer, PreTrainedTokenizerFast):
