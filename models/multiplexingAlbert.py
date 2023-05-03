@@ -45,6 +45,7 @@ class AlbertSequenceClassificationMuxed(AlbertPreTrainedModel):
         self.task_loss_coeff = config.task_loss_coeff
         #AlbertModel
         #self.roberta = RobertaModel(config, add_pooling_layer=False)
+        
         self.albert = AlbertModel(config, add_pooling_layer=False)
         if config.demuxing_variant == "index":
             self.demultiplexer = RobertaIndexDemultiplexerSequenceClassification(config)

@@ -529,11 +529,11 @@ class MuxTrainer(Trainer):
             kwargs:
                 Additional keyword arguments used to hide deprecated arguments
         """
-        #stepcounter = 0
-        #taskLosses = []
-        #retrievalLosses = []
-        #avgTaskLosses = []
-        #avgRetrievalLosses = []
+        stepcounter = 0
+        taskLosses = []
+        retrievalLosses = []
+        avgTaskLosses = []
+        avgRetrievalLosses = []
         # memory metrics - must set up as early as possible
         self._memory_tracker.start()
 
@@ -834,14 +834,14 @@ class MuxTrainer(Trainer):
                         tr_retrieval_loss += cur_retrieval_loss
                 
                 
-                #stepcounter += 1
-                #taskLosses.append(cur_task_loss.item())
-                #retrievalLosses.append(cur_retrieval_loss.item())
-                #if stepcounter % 100 == 0:
-                #    avgTaskLosses.append(sum(taskLosses)/100)
-                #    avgRetrievalLosses.append(sum(retrievalLosses)/100)
-                #    taskLosses=[]
-                #    retrievalLosses=[]
+                stepcounter += 1
+                taskLosses.append(cur_task_loss.item())
+                retrievalLosses.append(cur_retrieval_loss.item())
+                if stepcounter % 100 == 0:
+                    avgTaskLosses.append(sum(taskLosses)/100)
+                    avgRetrievalLosses.append(sum(retrievalLosses)/100)
+                    taskLosses=[]
+                    retrievalLosses=[]
                     
 
                 #if epoch % 100 == 0:
@@ -1005,10 +1005,10 @@ class MuxTrainer(Trainer):
             os.makedirs(path, exist_ok = True) 
             torch.save(self.model.state_dict(), os.path.join(path, "model.pt"))
 
-        #file = open("losses.txt", "w+")
-        #content = str([avgTaskLosses, avgRetrievalLosses])
-        #file.write(content)
-        #file.close()
+        file = open("losses.txt", "w+")
+        content = str([avgTaskLosses, avgRetrievalLosses])
+        file.write(content)
+        file.close()
 
         return TrainOutput(
             self.state.global_step,
