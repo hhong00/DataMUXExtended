@@ -31,7 +31,6 @@ from datasets import ClassLabel, load_dataset, load_metric
 from transformers import (
     AutoConfig,
     AutoModelForTokenClassification,
-    AlbertForTokenClassification,
     AutoTokenizer,
     DataCollatorForTokenClassification,
     HfArgumentParser,
@@ -438,7 +437,6 @@ def main():
             if model_path_supplied:
                 model = AutoModelForTokenClassification.from_pretrained(model_args.model_name_or_path, config=config)
             else:
-                #breakpoint()
                 model = AutoModelForTokenClassification(config=config)
 
     # Tokenizer check: this script requires a fast tokenizer.
