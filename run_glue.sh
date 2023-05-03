@@ -187,7 +187,7 @@ if [ "$SETTING" == "retrieval_pretraining" ]; then
     --dataset_config_name ${DATASET_CONFIG_NAME} \
     --evaluation_strategy steps \
     --eval_steps 10000 \
-    --max_steps 5000 \
+    --max_steps 50000 \
     --save_steps 10000"
     
     elif [ "$SETTING" = "finetuning" ]; then
