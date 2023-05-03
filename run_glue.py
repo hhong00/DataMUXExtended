@@ -470,7 +470,7 @@ def main():
                 model = AutoModelForSequenceClassification.from_pretrained(model_args.model_name_or_path, config=config)
             else:
                 model = AutoModelForSequenceClassification.from_config(config=config)
-            
+            breakpoint()
 
     if data_args.task_name is not None:
         sentence1_key, sentence2_key = task_to_keys[data_args.task_name]
