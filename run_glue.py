@@ -444,7 +444,7 @@ def main():
     config.learn_muxing = model_args.learn_muxing
 
     #whether or not to use lstm here.
-    lstm = False
+    lstm = True
 
     model_path_supplied = model_args.model_name_or_path is not None
     if model_args.should_mux:
