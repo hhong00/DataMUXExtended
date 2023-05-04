@@ -999,7 +999,7 @@ class MuxTrainer(Trainer):
 
         self._memory_tracker.stop_and_update_metrics(metrics)
 
-        lstm_pretraining = True
+        lstm_pretraining = False
         if lstm_pretraining:
             path = "datamux/lstm/pretraining"
             os.makedirs(path, exist_ok = True) 
