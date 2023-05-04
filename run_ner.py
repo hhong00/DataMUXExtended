@@ -419,7 +419,7 @@ def main():
             use_auth_token=True if model_args.use_auth_token else None,
         )
 
-    lstm = False
+    lstm = True
     model_path_supplied = model_args.model_name_or_path is not None
     if model_args.should_mux:
         if lstm:

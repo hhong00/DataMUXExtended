@@ -572,7 +572,7 @@ class MuxTrainer(Trainer):
                 )
         
         # Heavy modification here to trainer, hardcoded lstm bool value to tell if currently doing lstm implementation or not
-        lstm = False
+        lstm = True
         if resume_from_checkpoint is not None and os.path.isfile(
             os.path.join(resume_from_checkpoint, WEIGHTS_NAME)
         ):
@@ -999,7 +999,7 @@ class MuxTrainer(Trainer):
 
         self._memory_tracker.stop_and_update_metrics(metrics)
 
-        lstm_pretraining = False
+        lstm_pretraining = True
         if lstm_pretraining:
             path = "datamux/lstm/pretraining"
             os.makedirs(path, exist_ok = True) 
