@@ -312,3 +312,4 @@ if [[ $USE_SLURM = 1 ]]; then
 else
     ./run_job.sh "$CMD"
 fi
+
