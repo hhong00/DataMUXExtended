@@ -1,7 +1,10 @@
-## Beyond DataMux ##
+## Beyond DataMUX ##
 
-What I did was extend the below documentation on DataMux to LSTM and ALBERT Transformers to test the robustness of the multiplexing model. 
+What Harbin Hong did was extend the below documentation on DataMUX to LSTM and ALBERT Transformers to test the robustness of the multiplexing model. 
 By using these models, we reduce the training time and reduce training parameters multiple fold in order to create even less computationally expensive models.
+
+
+### Below is the original documentation of DataMUX
 
 ## DataMUX ##
 
