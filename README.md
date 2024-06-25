@@ -1,3 +1,8 @@
+## Beyond DataMux ##
+
+What I did was extend the below documentation on DataMux to LSTM and ALBERT Transformers to test the robustness of the multiplexing model. 
+By using these models, we reduce the training time and reduce training parameters multiple fold in order to create even less computationally expensive models.
+
 ## DataMUX ##
 
 PyTorch implementation for the paper:
@@ -152,5 +157,7 @@ year={2022},
 url={https://openreview.net/forum?id=UdgtTVTdswg}
 }
 ```
+
+
 ### License
 Check `LICENSE.md`
